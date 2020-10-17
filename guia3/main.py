@@ -63,10 +63,10 @@ class Rectangle:
         return self.base() * self.height() / 2
 
     def base(self):
-        return self.__end.x - self.__start.x
+        return abs(self.__end.x - self.__start.x)
 
     def height(self):
-        return self.__end.y - self.__start.y
+        return abs(self.__end.y - self.__start.y)
 
 
 def main():
