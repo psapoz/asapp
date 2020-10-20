@@ -126,7 +126,6 @@ class YoungAccount(Account):
 
     @staticmethod
     def __is_valid_acc_age(age):
-        print(age)
         return Person.legal_age() <= age <= YoungAccount.__age_max
 
 
