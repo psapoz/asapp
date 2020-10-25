@@ -25,16 +25,17 @@ class TxtFileEntityMapping:
         self.fields = fields
         self.fsep = fsep
         self.entity_cls = entity_cls
-        self.entities = self.__generate_entities()
+        self.entities = []
+        self.__generate_entities()
 
     def display(self):
-        for e in self.entities:
-            print(e)
+        for entity in self.entities:
+            print(entity)
 
     def __generate_entities(self):
         with open(self.filename, encoding=FILE_ENCODING) as f:
-            lines = f.read().splitlines()
-        return map(self.__create_entity, lines)
+            for line in f:
+                self.entities.append(self.__create_entity(line.strip()))
 
     def __create_entity(self, line):
         values = line.split(self.fsep)
