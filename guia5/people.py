@@ -20,8 +20,7 @@ def load_people():
     people = []
     with open(FILENAME, encoding=FILE_ENCODING) as f:
         for line in f:
-            line = line.replace('\n', '')
-            person = create_person(line)
+            person = create_person(line.rstrip())
             people.append(person)
     return people
 
