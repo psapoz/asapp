@@ -35,7 +35,7 @@ class Point:
 
 
 class Vector:
-    def __init__(self, point_1: Point, point_2: Point):
+    def __init__(self, point_1, point_2):
         self.__point_1 = point_1
         self.__point_2 = point_2
 
@@ -55,7 +55,7 @@ class Vector:
 
 
 class Rectangle:
-    def __init__(self, start: Point, end: Point):
+    def __init__(self, start, end):
         self.__start = start
         self.__end = end
 
