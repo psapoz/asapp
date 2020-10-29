@@ -9,7 +9,7 @@ class Person:
     __dni_error_msg = 'El dni ingresado es inválido.'
     __display_msg = 'Nombre: {} - Edad: {} - DNI: {}'
 
-    def __init__(self, dni: int, fullname: str = '', age: int = 0):
+    def __init__(self, dni, fullname='', age=0):
         self.__dni(dni)
         self.fullname = fullname
         self.age = age
@@ -58,7 +58,7 @@ class Account:
     __new_balance_msg = 'Su nuevo balance es de {}$'
     __unmodified_balance_msg = 'Su balance de {}$ no se ha modificado.'
 
-    def __init__(self, holder: Person, amount: float = 0.0):
+    def __init__(self, holder, amount=0.0):
         self.holder = holder
         self.__balance = amount
 
@@ -69,14 +69,14 @@ class Account:
     def balance(self):
         return self.__balance
 
-    def deposit(self, amount: float):
+    def deposit(self, amount):
         if amount > 0:
             self.__balance += amount
             print(Account.__new_balance_msg.format(self.__balance))
         else:
             print(Account.__unmodified_balance_msg.format(self.__balance))
 
-    def withdraw(self, amount: float):
+    def withdraw(self, amount):
         self.__balance -= amount
         print(Account.__new_balance_msg.format(self.__balance))
 
@@ -91,12 +91,13 @@ class YoungAccount(Account):
     __allowance_error_msg = 'La bonificación ingresada es inválida.'
 
     def __init__(self,
-                 tentative_holder: Person,
+                 tentative_holder,
                  allowance,
-                 amount: float = 0.0):
+                 amount= 0.0):
         if not self.__is_valid_acc_age(tentative_holder.age):
-            raise ValueError(YoungAccount.__account_req_msg.format(Person.legal_age(),
-                                                                   self.__age_max))
+            raise ValueError(
+                YoungAccount.__account_req_msg.format(Person.legal_age(),
+                                                      self.__age_max))
         super().__init__(tentative_holder, amount)
         self.allowance = allowance
 
@@ -117,7 +118,7 @@ class YoungAccount(Account):
     def is_valid_holder(self):
         return self.__is_valid_acc_age(self.holder.age)
 
-    def withdraw(self, amount: float):
+    def withdraw(self, amount):
         if not self.is_valid_holder():
             raise ValueError(
                 YoungAccount.__withdrawal_req_msg.format(Person.legal_age(),
@@ -126,6 +127,7 @@ class YoungAccount(Account):
 
     @staticmethod
     def __is_valid_acc_age(age):
+        print(age)
         return Person.legal_age() <= age <= YoungAccount.__age_max
 
 
