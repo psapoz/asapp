@@ -15,8 +15,8 @@ class Counter:
         self.__value = 0
         self.__load()
 
-    def __str__(self):
-        return Counter.__msg.format(self.__value)
+    def display(self):
+        print(Counter.__msg.format(self.__value))
 
     def update(self, arg):
         action = arg.lower()
@@ -48,7 +48,7 @@ def main():
     if len(sys.argv) == 2:
         counter.update(sys.argv[1])
 
-    print(counter)
+    counter.display()
 
 
 if __name__ == '__main__':
