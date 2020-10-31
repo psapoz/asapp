@@ -26,19 +26,17 @@ class Counter:
             self.__store()
 
     def __load(self):
-        mode = 'r+' if os.path.exists(FN) else 'w'
+        mode = 'r' if os.path.exists(FN) else 'w'
 
         with open(FN, mode) as f:
-            value_from_file = f.read().rstrip()
-
-            if value_from_file:
+            try:
+                value_from_file = f.read().rstrip()
                 self.__value = int(value_from_file)
-            else:
+            except ValueError:
                 f.write(str(self.__value))
 
     def __store(self):
-        with open(FN, 'w+') as f:
-            f.seek(0)
+        with open(FN, 'w') as f:
             f.write(str(self.__value))
 
 
